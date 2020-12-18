@@ -20,13 +20,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <!--imgFromUrl="@{item.posterPath}" -->
             <ImageView
                 android:id="@+id/card_img"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 tools:src="@drawable/ic_launcher_foreground"
+                imgFromUrl="@{item.posterPath}"
                 android:contentDescription="@string/movie_poster_image" />
             <TextView
                 android:id="@+id/card_title"

@@ -18,13 +18,12 @@ class OverviewViewModel(private val apiService: TMDBApiService) : ViewModel(){
     }
     private fun getMovies(){
         viewModelScope.launch {
-            try{
-                val response = apiService.getPopularMovies(5)
-                    _movies.value = response.results
-            }catch (e:Exception){
-                Log.e("Error Api", e.message,e)
+            val response = apiService.getPopularMovies(5)
+            if(response.isSuccessful){
+                _movies.value = response.body()?.results
+            }else{
+                Log.e("Api Call failed", response.code().toString())
             }
-
         }
     }
 }

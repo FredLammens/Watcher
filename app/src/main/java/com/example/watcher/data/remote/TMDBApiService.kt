@@ -28,14 +28,14 @@ interface TMDBApiService {
             @Query("page") page:Int = 1,
             @Query("language") language:String = "nl",
             @Query("region") region:String = "BE"
-    ) : MovieRespons
+    ) : Response<MovieRespons>
 
     /**
      * returns the imageconfiguration object used for converting relative img paths to absolute
      */
     @GET("3/configuration")
     suspend fun getImageConfiguration(
-    ) : ConfigurationRespons
+    ) : Response<ConfigurationRespons>
     //endregion
 
     companion object { //static method
