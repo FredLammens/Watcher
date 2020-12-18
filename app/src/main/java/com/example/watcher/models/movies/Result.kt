@@ -4,6 +4,22 @@ package com.example.watcher.models.movies
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+/**
+ * Represents a movie object
+ * @property adult true if its an adult film
+ * @property backdropPath background image path
+ * @property genreIds id of genreObject
+ * @property id  id of movieObject
+ * @property originalLanguage the original language of the movie
+ * @property overview description of movie
+ * @property popularity score based on number of votes, views for the day , how many marked it as favourite etc.
+ * @property posterPath relative path of poster image
+ * @property releaseDate the movie's release date
+ * @property title the title of the movie
+ * @property video if the movie has a trailer is true
+ * @property voteAverage score from 1 to 5 base on votes
+ * @property voteCount count of how many people voted
+ */
 @JsonClass(generateAdapter = true)
 data class Result(
     val adult: Boolean,
