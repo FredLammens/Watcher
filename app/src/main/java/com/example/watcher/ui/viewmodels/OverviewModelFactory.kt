@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.watcher.data.remote.TMDBApiService
 import java.lang.IllegalArgumentException
 
+@Suppress("UNCHECKED_CAST")
 class OverviewModelFactory (private val apiService: TMDBApiService): ViewModelProvider.Factory{
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(OverviewViewModel::class.java)){
