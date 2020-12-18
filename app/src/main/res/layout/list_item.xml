@@ -24,7 +24,7 @@
                 android:id="@+id/card_img"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop"
+                android:scaleType="center"
                 tools:src="@drawable/ic_launcher_foreground"
                 imgFromUrl="@{item.posterPath}"
                 android:contentDescription="@string/movie_poster_image" />
