@@ -4,6 +4,16 @@ package com.example.watcher.models.configuration
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+/**
+ * return possible imageconfigurations
+ * @property backdropSizes list of all backdropsizes
+ * @property baseUrl baseUrl to create absolute path
+ * @property logoSizes list of possible logo sizes
+ * @property posterSizes list of possible poster sizes
+ * @property profileSizes list of possible profile sizes
+ * @property secureBaseUrl baseUrl but with HTTPS
+ * @property stillSizes sizes for still images
+ */
 @JsonClass(generateAdapter = true)
 data class Images(
     @Json(name = "backdrop_sizes")

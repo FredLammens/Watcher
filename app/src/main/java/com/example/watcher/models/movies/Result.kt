@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 
 /**
  * Represents a movie object
- * @property adult adult film?
+ * @property adult true if its an adult film
  * @property backdropPath background image path
  * @property genreIds id of genreObject
  * @property id  id of movieObject
