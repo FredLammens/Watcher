@@ -14,5 +14,9 @@
     <fragment
         android:id="@+id/moviesDetails"
         android:name="com.example.watcher.ui.fragments.MoviesDetails"
-        android:label="MoviesDetails" />
+        android:label="MoviesDetails" >
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

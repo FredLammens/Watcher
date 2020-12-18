@@ -30,6 +30,9 @@ interface TMDBApiService {
             @Query("region") region:String = "BE"
     ) : Response<MovieRespons>
 
+    /**
+     * returns the imageconfiguration object used for converting relative img paths to absolute
+     */
     @GET("/configuration")
     suspend fun getImageConfiguration(
     ) : Response<ConfigurationRespons>
