@@ -18,6 +18,6 @@ interface MovieDao { //zoals apiService
     @Query("SELECT * FROM movies")
     fun getAllMovies(): LiveData<List<Result>>
 
-    @Query("SELECT * FROM movies WHERE id ==:id ")
-    fun getMovie(id: Int)
+    @Query("SELECT * FROM movies WHERE id =:id ")
+    fun getMovie(id: Int) : Result
 }
