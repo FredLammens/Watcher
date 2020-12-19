@@ -4,15 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.watcher.models.movies.Result
 
 @Database(
         entities = [Result::class],
         version = 1
 )
+@TypeConverters(Converters::class)
 abstract class MoviesDatabase : RoomDatabase(){
 
-    abstract fun getMoviesDao(): MovieDao
+    //abstract fun getMoviesDao(): MovieDao
 
 
     companion object{ //creates actual database
