@@ -34,23 +34,30 @@ class MoviesOverview : Fragment(), MovieClickListener {
         viewModel.movies.observe(viewLifecycleOwner,{ response ->
             when(response){
                 is Resource.Succes  -> {
-                    binding.progressBar.visibility = View.INVISIBLE
+                    hideProgressBar(binding)
                     response.data?.let{  movieResponse -> //not null
                         adapter.submitList(movieResponse)
                     }
                 }
                 is Resource.Error -> {
-                    binding.progressBar.visibility = View.INVISIBLE
+                    hideProgressBar(binding)
                     response.message?.let{ message ->
                         Log.e("MoviesOverview","An error occured: $message")
                     }
                 }
                 is Resource.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
+                    showProgressBar(binding)
                 }
             }
         })
         return binding.root
+    }
+
+    private fun hideProgressBar( binding: FragmentMoviesOverviewBinding){
+        binding.progressBar.visibility = View.INVISIBLE
+    }
+    private fun showProgressBar(binding: FragmentMoviesOverviewBinding){
+        binding.progressBar.visibility = View.VISIBLE
     }
 
     override fun onMovieClicked(movie: Result) {
