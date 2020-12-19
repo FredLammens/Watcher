@@ -3,7 +3,7 @@
 # Description: 
 Watcher app is an app that aims to help people find new movies to watch faster.
 Watcher is visually based.
-To start off the app will be to only look for new movies for yourself to watch.
+To start off the app will be only to look for new movies to watch.
 Later functionality will be added to see what your friends would like to watch and what you both would like to watch.
 etc...
 
