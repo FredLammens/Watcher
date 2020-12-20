@@ -20,42 +20,45 @@ import com.example.watcher.utils.Resource
 
 class MoviesOverview : Fragment(), MovieClickListener {
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentMoviesOverviewBinding.inflate(inflater,container,false)
+        val binding = FragmentMoviesOverviewBinding.inflate(inflater, container, false)
         val factory = OverviewModelFactory(MoviesRepository(MoviesDatabase(requireContext())))
-        val viewModel = ViewModelProvider(this,factory).get(OverviewViewModel::class.java)
+        val viewModel = ViewModelProvider(this, factory).get(OverviewViewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner
         val adapter = MovieAdapter(this)
         binding.adapter = adapter
-        viewModel.movies.observe(viewLifecycleOwner,{ response ->
-            when(response){
-                is Resource.Succes  -> {
-                    hideProgressBar(binding)
-                    response.data?.let{  movieResponse -> //not null
-                        adapter.submitList(movieResponse)
+        viewModel.movies.observe(
+            viewLifecycleOwner,
+            { response ->
+                when (response) {
+                    is Resource.Succes -> {
+                        hideProgressBar(binding)
+                        response.data?.let { movieResponse -> // not null
+                            adapter.submitList(movieResponse)
+                        }
                     }
-                }
-                is Resource.Error -> {
-                    hideProgressBar(binding)
-                    response.message?.let{ message ->
-                        Log.e("MoviesOverview","An error occured: $message")
+                    is Resource.Error -> {
+                        hideProgressBar(binding)
+                        response.message?.let { message ->
+                            Log.e("MoviesOverview", "An error occured: $message")
+                        }
                     }
-                }
-                is Resource.Loading -> {
-                    showProgressBar(binding)
+                    is Resource.Loading -> {
+                        showProgressBar(binding)
+                    }
                 }
             }
-        })
+        )
         return binding.root
     }
 
-    private fun hideProgressBar( binding: FragmentMoviesOverviewBinding){
+    private fun hideProgressBar(binding: FragmentMoviesOverviewBinding) {
         binding.progressBar.visibility = View.INVISIBLE
     }
-    private fun showProgressBar(binding: FragmentMoviesOverviewBinding){
+    private fun showProgressBar(binding: FragmentMoviesOverviewBinding) {
         binding.progressBar.visibility = View.VISIBLE
     }
 

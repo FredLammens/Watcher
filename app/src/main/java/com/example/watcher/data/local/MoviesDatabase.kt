@@ -8,27 +8,27 @@ import androidx.room.TypeConverters
 import com.example.watcher.models.movies.Result
 
 @Database(
-        entities = [Result::class],
-        version = 1,
-        exportSchema = false
+    entities = [Result::class],
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(Converters::class)
-abstract class MoviesDatabase : RoomDatabase(){
+abstract class MoviesDatabase : RoomDatabase() {
 
     abstract fun getMoviesDao(): MovieDao
 
-    companion object{ //creates actual database
+    companion object { // creates actual database
 
-        @Volatile private var instance: MoviesDatabase? = null //volatile = other threads see when instance changes / instance = singleton
+        @Volatile private var instance: MoviesDatabase? = null // volatile = other threads see when instance changes / instance = singleton
         private val LOCK = Any()
 
-        operator fun invoke(context: Context) = instance ?: synchronized(LOCK){//synchronize lock makes sure theres only one database/ not another threads that sets this
-            instance ?: createDatabase(context).also{instance=it} //if instance = null creates database
+        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) { // synchronize lock makes sure theres only one database/ not another threads that sets this
+            instance ?: createDatabase(context).also { instance = it } // if instance = null creates database
         }
         private fun createDatabase(context: Context) = Room.databaseBuilder(
-                context.applicationContext,
-                MoviesDatabase::class.java,
-                "moviesDB"
+            context.applicationContext,
+            MoviesDatabase::class.java,
+            "moviesDB"
         ).build()
     }
 }

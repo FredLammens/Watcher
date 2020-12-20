@@ -1,6 +1,5 @@
 package com.example.watcher.models.configuration
 
-
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

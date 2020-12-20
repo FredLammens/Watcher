@@ -17,16 +17,19 @@ import com.example.watcher.ui.viewmodels.MovieDetailViewModel
 
 class MoviesDetails : Fragment() {
 
-    private val arguments : MoviesDetailsArgs by navArgs()
+    private val arguments: MoviesDetailsArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = FragmentMoviesDetailsBinding.inflate(inflater,container,false)
+        val binding = FragmentMoviesDetailsBinding.inflate(inflater, container, false)
         val factory = DetailsModelFactory(MoviesRepository(MoviesDatabase(requireContext())), arguments.movieId)
-        val viewModel = ViewModelProvider(this,factory).get(MovieDetailViewModel::class.java)
+        val viewModel = ViewModelProvider(this, factory).get(MovieDetailViewModel::class.java)
 
-        viewModel.movie.observe(viewLifecycleOwner,{
-            binding.movie = it
-        })
+        viewModel.movie.observe(
+            viewLifecycleOwner,
+            {
+                binding.movie = it
+            }
+        )
 
         return binding.root
     }

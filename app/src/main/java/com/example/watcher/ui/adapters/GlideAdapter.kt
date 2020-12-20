@@ -6,15 +6,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
 class GlideAdapter {
-    companion object{
+    companion object {
         @JvmStatic
         @BindingAdapter("imgFromUrl")
-        fun bindImageFromUrl(view: ImageView, imageUrl: String?){
-            if(!imageUrl.isNullOrEmpty()){
+        fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
+            if (!imageUrl.isNullOrEmpty()) {
                 Glide.with(view)
-                        .load(imageUrl)
-                        .transition(DrawableTransitionOptions.withCrossFade())
-                        .into(view)
+                    .load(imageUrl)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(view)
             }
         }
     }

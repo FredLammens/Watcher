@@ -11,21 +11,21 @@ import com.example.watcher.utils.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-var relativeImgUrl  = "https://image.tmdb.org/t/p/"
+var relativeImgUrl = "https://image.tmdb.org/t/p/"
 const val IMG_SIZE = "w500"
-class OverviewViewModel(private val repo: MoviesRepository) : ViewModel(){
-    private var _movies = MutableLiveData<Resource<List<Result>>>() //enkel aanpasbaar binnen viewmodel
-    val movies  : LiveData<Resource<List<Result>>>
+class OverviewViewModel(private val repo: MoviesRepository) : ViewModel() {
+    private var _movies = MutableLiveData<Resource<List<Result>>>() // enkel aanpasbaar binnen viewmodel
+    val movies: LiveData<Resource<List<Result>>>
         get() = _movies
 
-    init{
+    init {
         getMovies()
     }
 
     /**
      * sets the viewmodel movies with the api and maps all posterimgs to absolute version
      */
-    private fun getMovies(){
+    private fun getMovies() {
         viewModelScope.launch {
             _movies.postValue(Resource.Loading())
             val response = repo.getPopularMovies(5)
@@ -33,9 +33,9 @@ class OverviewViewModel(private val repo: MoviesRepository) : ViewModel(){
         }
     }
 
-    private suspend fun handleMoviesResponse(response: Response<MovieRespons>) : Resource<List<Result>> {
-        if(response.isSuccessful){
-            val results = response.body()!!.results.map { it.apply {it.posterPath = relativeImgUrl + IMG_SIZE + it.posterPath}}
+    private suspend fun handleMoviesResponse(response: Response<MovieRespons>): Resource<List<Result>> {
+        if (response.isSuccessful) {
+            val results = response.body()!!.results.map { it.apply { it.posterPath = relativeImgUrl + IMG_SIZE + it.posterPath } }
             repo.insertMoviesIntoDB(results)
             return Resource.Succes(results)
         }
