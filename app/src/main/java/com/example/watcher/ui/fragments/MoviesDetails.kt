@@ -17,7 +17,7 @@ import com.example.watcher.ui.viewmodels.MovieDetailViewModel
 
 class MoviesDetails : Fragment() {
 
-    val arguments : MoviesDetailsArgs by navArgs()
+    private val arguments : MoviesDetailsArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentMoviesDetailsBinding.inflate(inflater,container,false)
