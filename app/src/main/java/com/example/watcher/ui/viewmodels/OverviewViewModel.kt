@@ -1,19 +1,15 @@
 package com.example.watcher.ui.viewmodels
 
-import android.telecom.Call
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.watcher.data.MoviesRepository
-import com.example.watcher.data.remote.TMDBApiService
 import com.example.watcher.models.movies.MovieRespons
 import com.example.watcher.models.movies.Result
 import com.example.watcher.utils.Resource
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.Response
-import java.lang.Exception
-import java.lang.IllegalArgumentException
 
 var relativeImgUrl  = "https://image.tmdb.org/t/p/"
 const val IMG_SIZE = "w500"
@@ -37,9 +33,10 @@ class OverviewViewModel(private val repo: MoviesRepository) : ViewModel(){
         }
     }
 
-    private fun handleMoviesResponse(response: Response<MovieRespons>) : Resource<List<Result>> {
+    private suspend fun handleMoviesResponse(response: Response<MovieRespons>) : Resource<List<Result>> {
         if(response.isSuccessful){
-            val results = response.body()!!.results.map { it -> it.apply {it.posterPath = relativeImgUrl + IMG_SIZE + it.posterPath}}
+            val results = response.body()!!.results.map { it.apply {it.posterPath = relativeImgUrl + IMG_SIZE + it.posterPath}}
+            repo.insertMoviesIntoDB(results)
             return Resource.Succes(results)
         }
         return Resource.Error(response.message())

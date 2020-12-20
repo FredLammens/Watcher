@@ -22,7 +22,7 @@ class MovieAdapter(private var movieClickListener: MovieClickListener ) : ListAd
         }
     }
 }
-class ResultViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root){
+class ResultViewHolder(private val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root){
     fun bindData(movie: Result){
         binding.item = movie
     }

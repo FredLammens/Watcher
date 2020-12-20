@@ -11,6 +11,6 @@ class Converters {
     @TypeConverter
     fun toGenreIds(genreIds: String) : List<Int>{
         val genreStringsArray = genreIds.split(",")
-        return genreStringsArray.map { it -> it.toInt() }
+        return genreStringsArray.map { it.toInt() }
     }
 }
