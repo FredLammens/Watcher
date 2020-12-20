@@ -45,7 +45,8 @@
                     android:textSize="25sp"
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginEnd="10dp"/>
+                    android:layout_marginEnd="10dp"
+                    style="@style/CardHead"/>
 
                 <TextView
                     android:id="@+id/info_description"
@@ -94,7 +95,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:text="@string/movies_description"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    style="@style/CardHead"/>
 
                 <TextView
                     android:id="@+id/descriptionCard_description"
