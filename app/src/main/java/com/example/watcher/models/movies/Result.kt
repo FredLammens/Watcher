@@ -1,6 +1,8 @@
 package com.example.watcher.models.movies
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -20,6 +22,7 @@ import com.squareup.moshi.JsonClass
  * @property voteAverage score from 1 to 5 base on votes
  * @property voteCount count of how many people voted
  */
+@Entity(tableName = "movies")
 @JsonClass(generateAdapter = true)
 data class Result(
     val adult: Boolean,
@@ -27,6 +30,7 @@ data class Result(
     val backdropPath: String,
     @Json(name = "genre_ids")
     val genreIds: List<Int>,
+    @PrimaryKey(autoGenerate = false)
     val id: Int,
     @Json(name = "original_language")
     val originalLanguage: String,
